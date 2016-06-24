@@ -15,4 +15,7 @@ Gem::Specification.new do |spec|
   spec.files             = Dir['lib/**/*']
   spec.require_paths     = %w[ lib ]
   spec.extra_rdoc_files  = ['LICENSE']
+
+  spec.add_dependency 'httparty', '~> 0.13'
+  spec.add_dependency 'memoist',  '~> 0.14'
 end
