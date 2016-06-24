@@ -5,16 +5,13 @@ module TripSpark
     extend Memoist
 
     require_all 'client',
-      'routes'
+      'routes',
+      'patterns',
+      'vehicles'
 
     include_api :routes
-
-
-    # Return a list of patterns for the route given by `route_key`.
-    def patterns_for route_key
-      post_request('/GetPatternPoints/', body: { routeKey: route_key }).map{ |pattern| Pattern.new(pattern) }
-    end
-    memoize :patterns_for
+    include_api :patterns
+    include_api :vehicles
   end
 end
 

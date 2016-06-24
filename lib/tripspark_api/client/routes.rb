@@ -2,7 +2,7 @@ module TripSpark
   class Client::Routes < API
     extend Memoist
 
-    # Return a list of all routes on the system
+    # Return a list of all routes on the system.
     def list
       post_request('/GetRoutes/').map{ |route| Route.new(route) }
     end
@@ -13,6 +13,18 @@ module TripSpark
     def get key
       list.find{ |route| route.key == key }
     end
+    memoize :get
     alias_method :find, :get
+
+    # Return a list of pairs of route keys and direction keys. Used when
+    # requesting vehicles.
+    def route_direction_pairs
+      list.each_with_object([]) do |route, pairs|
+        route.patterns.each do |pattern|
+          pairs << [route.key, pattern.direction.key]
+        end
+      end
+    end
+    memoize :route_direction_pairs
   end
 end

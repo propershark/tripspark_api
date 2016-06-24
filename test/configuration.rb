@@ -6,12 +6,10 @@ TripSpark.configure do |config|
   config.debug_output = false
 end
 
-trip_spark = TripSpark.new.routes
-trip_spark.list.each do |route|
-  puts route
-end
+trip_spark = TripSpark.new
 
-puts
-puts trip_spark.get('c765a8d4-ae2e-4066-8365-490dc65539bf')
-# trip_spark.patterns_for('c765a8d4-ae2e-4066-8365-490dc65539bf').each do |pattern|
-# end
+puts trip_spark.vehicles.list.inspect
+
+trip_spark.patterns.list('c765a8d4-ae2e-4066-8365-490dc65539bf').each do |pattern|
+  puts "#{pattern.name}: #{pattern.stops.length} stops"
+end

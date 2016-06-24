@@ -25,6 +25,11 @@ module TripSpark
           require_relative "#{File.join(folder, lib)}"
         end
       end
+
+      # Return a singleton instance of this API
+      def singleton
+        @singleton ||= self.new
+      end
     end
 
 
