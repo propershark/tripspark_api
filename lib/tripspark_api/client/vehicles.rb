@@ -13,7 +13,7 @@ module TripSpark
 
       # Why, oh why, is this nesting necessary?
       # Answer: It's not.
-      post_request('/GetVehicles/', body: params).each_with_object([]) do |route, vehicles|
+      post_request('/RouteMap/GetVehicles/', body: params).each_with_object([]) do |route, vehicles|
         route['VehiclesByPattern'].each do |vehicles_for_pattern|
           vehicles_for_pattern['Vehicles'].each do |vehicle|
             vehicles << Vehicle.new(pattern)

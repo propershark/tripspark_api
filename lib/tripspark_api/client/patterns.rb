@@ -10,7 +10,7 @@ module TripSpark
           routeKey: route_key
         }
       }
-      post_request('/GetPatternPoints/', params).map{ |pattern| Pattern.new(pattern) }
+      post_request('/RouteMap/GetPatternPoints/', params).map{ |pattern| Pattern.new(pattern) }
     end
     memoize :list
     alias_method :all, :list

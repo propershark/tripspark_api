@@ -1,7 +1,7 @@
 require_relative '../lib/tripspark_api.rb'
 
 TripSpark.configure do |config|
-  config.base_uri     = 'http://bus.gocitybus.com/RouteMap/'
+  config.base_uri     = 'http://bus.gocitybus.com/'
   config.adapter      = :httparty
   config.debug_output = false
 end

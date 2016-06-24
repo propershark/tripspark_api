@@ -4,7 +4,7 @@ module TripSpark
 
     # Return a list of all routes on the system.
     def list
-      post_request('/GetRoutes/').map{ |route| Route.new(route) }
+      post_request('/RouteMap/GetRoutes/').map{ |route| Route.new(route) }
     end
     memoize :list
     alias_method :all, :list
