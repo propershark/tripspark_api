@@ -42,5 +42,11 @@ module TripSpark
     def post_request endpoint, opts={}, &block
       connection.post endpoint, opts, &block
     end
+
+    # For APIs that extend Memoist, allow the user to call `refresh` as an
+    # alias for `flush_cache`.
+    def refresh
+      send(:flush_cache) if respond_to?(:flush_cache)
+    end
   end
 end

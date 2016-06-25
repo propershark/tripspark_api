@@ -23,7 +23,7 @@ module TripSpark
         route.patterns.each do |pattern|
           pairs << [route.key, pattern.direction.key]
         end
-      end
+      end.uniq
     end
     memoize :route_direction_pairs
   end

@@ -2,6 +2,8 @@ require 'set'
 
 module TripSpark
   class Model
+    extend Forwardable
+
     class << self
       # Define a new attribute of the model.
       # If `type` is given, a new instance of `type` will be created whenever
@@ -44,6 +46,14 @@ module TripSpark
       def primary_attribute name
         @identifier = name
       end
+
+      # Define one or more delegated methods on the model, passing them to the
+      # given attribute.
+      def delegate *names, to:
+        names.each do |name|
+          def_delegator to, name
+        end
+      end
     end
 
     # Initialize a model instance with any given attributes assigned
@@ -62,6 +72,12 @@ module TripSpark
     # The value of the primary attribute on this model
     def identifier
       send(self.class.identifier)
+    end
+
+    # Assume that two Model objects are the same if their primary attributes
+    # have the same value
+    def == o
+      identifier == o.identifier
     end
   end
 end

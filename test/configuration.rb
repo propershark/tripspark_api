@@ -8,8 +8,7 @@ end
 
 trip_spark = TripSpark.new
 
-puts trip_spark.vehicles.list.inspect
+puts trip_spark.vehicles.all.map{ |v| v.name }
 
-trip_spark.patterns.list('c765a8d4-ae2e-4066-8365-490dc65539bf').each do |pattern|
-  puts "#{pattern.name}: #{pattern.stops.length} stops"
-end
+v = trip_spark.vehicles.get('a6cdfb13-ab66-41cf-be9d-bb6756a10c1a')
+puts "Vehicle #{v.name} is on #{v.route.combined_name} and has #{v.onboard} of #{v.capacity} possible passengers onboard."
