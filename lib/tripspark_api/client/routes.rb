@@ -18,8 +18,9 @@ module TripSpark
 
     # Return a list of pairs of route keys and direction keys. Used when
     # requesting vehicles.
-    def route_direction_pairs
+    def route_direction_pairs *routes
       list.each_with_object([]) do |route, pairs|
+        next unless routes.empty? or !routes.include?(route.key)
         route.patterns.each do |pattern|
           pairs << [route.key, pattern.direction.key]
         end

@@ -4,8 +4,6 @@ module TripSpark
     attribute :key
     # The name given to this vehicle
     attribute :name
-    # The saturation of the vehicle with passengers
-    attribute :percent_filled
     # The GPS location of this vehicle, along with when it was last updated
     attribute :gps, type: :g_p_s
     # Expose GPS information directly via this vehicle.
@@ -42,6 +40,9 @@ module TripSpark
     # The number of passengers currently onboard this vehicle
     attribute :passengers_onboard
     alias_method :onboard, :passengers_onboard
+    # The saturation of the vehicle with passengers
+    attribute :percent_filled
+    alias_method :saturation, :percent_filled
     # NOTE: The purpose of this field is unknown, as it is almost always given
     # a value of `null`.
     attribute :work
