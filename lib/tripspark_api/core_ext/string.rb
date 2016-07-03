@@ -8,6 +8,7 @@ class String
     self.gsub!(/([a-z\d])([A-Z])/,'\1_\2')
     self.tr_s!('- ', '_')
     self.downcase!
+    self
   end unless method_defined? :underscore!
 
   def titleize
